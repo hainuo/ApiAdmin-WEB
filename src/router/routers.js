@@ -71,6 +71,48 @@ export default [
     ]
   },
   {
+    path: '/base',
+    name: 'base_setting',
+    meta: {
+      icon: 'ios-cog',
+      title: '基础配置',
+      access: ['admin/Education/index', 'admin/Position/index']
+    },
+    component: Main,
+    children: [
+      {
+        path: 'education',
+        name: 'education_setting',
+        meta: {
+          icon: 'md-list',
+          title: '学历管理',
+          access: 'admin/Education/index'
+        },
+        component: () => import('@/view/base/education.vue')
+      },
+      {
+        path: 'position',
+        name: 'position_setting',
+        meta: {
+          icon: 'md-list',
+          title: '职位管理',
+          access: 'admin/Position/index'
+        },
+        component: () => import('@/view/base/position.vue')
+      },
+      {
+        path: 'jobTitle',
+        name: 'job_title_setting',
+        meta: {
+          icon: 'md-list',
+          title: '职称管理',
+          access: 'admin/JobTitle/index'
+        },
+        component: () => import('@/view/base/jobTitle.vue')
+      }
+    ]
+  },
+  {
     path: '/system',
     name: 'system_setting',
     meta: {

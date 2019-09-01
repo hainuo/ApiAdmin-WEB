@@ -5,18 +5,18 @@
 <template>
   <div class="login" @keydown.enter="handleSubmit">
     <div class="login-con">
-      <Card icon="md-log-in" title="欢迎登录ApiAdmin后台管理系统" :bordered="false">
+      <Card icon="md-log-in" :title="title" :bordered="false">
         <div class="form-con">
           <Form ref="loginForm" :model="form" :rules="rules">
             <FormItem prop="username">
-              <Input v-model="form.username" placeholder="请使用微信/QQ登录">
+              <Input v-model="form.username" placeholder="请输入用户名">
                 <span slot="prepend">
                   <Icon :size="16" type="ios-person"></Icon>
                 </span>
               </Input>
             </FormItem>
             <FormItem prop="password">
-              <Input type="password" v-model="form.password" placeholder="请使用微信/QQ登录">
+              <Input type="password" v-model="form.password" placeholder="请输入密码">
                 <span slot="prepend">
                   <Icon :size="14" type="md-lock"></Icon>
                 </span>
@@ -26,7 +26,7 @@
               <Button @click="handleSubmit" type="primary" long>登录</Button>
             </FormItem>
           </Form>
-          <div style="padding-top:10px;font-size: 11px;border-top: 1px solid #e9eaec;">
+          <div  style="padding-top:10px;font-size: 11px;border-top: 1px solid #e9eaec;display: none">
             <span style="vertical-align:middle;">其他登录：</span>
             <img style="vertical-align:middle;" @click="qqLogin" :src="qq_login" alt=""> &nbsp;
             <img style="vertical-align:middle;" @click="wxLogin" :src="wx_login" alt="">
@@ -60,6 +60,7 @@ export default {
     return {
       qq_login,
       wx_login,
+      title: '',
       form: {
         username: '',
         password: ''
@@ -77,6 +78,7 @@ export default {
     }
   },
   created () {
+    this.title = this.$config.title
     let p = this.$route.params.loginType
     let q = this.$route.query
     if (p) {
